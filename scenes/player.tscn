@@ -1,0 +1,203 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://rsc/tint1_arm.png" type="Texture" id=1]
+[ext_resource path="res://rsc/tint1_head.png" type="Texture" id=2]
+[ext_resource path="res://rsc/tint1_neck.png" type="Texture" id=3]
+[ext_resource path="res://rsc/blueShirt1.png" type="Texture" id=4]
+[ext_resource path="res://rsc/tint1_leg.png" type="Texture" id=5]
+[ext_resource path="res://rsc/tint1_hand.png" type="Texture" id=6]
+[ext_resource path="res://rsc/pantsGrey_long.png" type="Texture" id=7]
+[ext_resource path="res://rsc/blackShoe5.png" type="Texture" id=8]
+[ext_resource path="res://scenes/player.gd" type="Script" id=9]
+
+[node name="player" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="joint_head_chest" type="PinJoint2D" parent="."]
+position = Vector2( 0.749454, 10.4923 )
+node_a = NodePath("../head")
+node_b = NodePath("../chest")
+bias = 0.327
+
+[node name="head" type="RigidBody2D" parent="."]
+
+[node name="poly" type="CollisionPolygon2D" parent="head"]
+position = Vector2( -0.0918045, 1.24425 )
+polygon = PoolVector2Array( -7.85879, 4.45996, -9.59852, -6.55835, 0.95586, -11.4296, 11.6262, -5.39853, 9.1906, 5.03988, 0.607914, 9.56318 )
+
+[node name="Sprite" type="Sprite" parent="head/poly"]
+position = Vector2( 0.583982, -1.02866 )
+scale = Vector2( 0.1593, 0.131624 )
+texture = ExtResource( 2 )
+
+[node name="chest" type="RigidBody2D" parent="."]
+
+[node name="poly" type="CollisionPolygon2D" parent="chest"]
+polygon = PoolVector2Array( -6.79078, 13.591, 8.28692, 13.2431, 10.7225, 21.2458, 9.6787, 38.8751, -7.83461, 38.7591, -8.99443, 21.4778 )
+
+[node name="Sprite" type="Sprite" parent="chest/poly"]
+position = Vector2( 0.774845, 26.3448 )
+scale = Vector2( 0.13545, 0.160117 )
+texture = ExtResource( 4 )
+
+[node name="Sprite2" type="Sprite" parent="chest/poly"]
+position = Vector2( 0.677989, 13.9472 )
+scale = Vector2( 0.142374, 0.152355 )
+texture = ExtResource( 3 )
+
+[node name="armL" type="RigidBody2D" parent="."]
+
+[node name="poly" type="CollisionPolygon2D" parent="armL"]
+position = Vector2( -14.8427, 17.169 )
+rotation = -0.621185
+scale = Vector2( 1, 1.04306 )
+polygon = PoolVector2Array( 18.4851, 16.3961, 22.6729, 21.8675, 23.8259, 28.5384, 27.3452, 28.2184, 26.4909, 19.4279, 21.4432, 10.9052 )
+
+[node name="Sprite" type="Sprite" parent="armL/poly"]
+position = Vector2( 23.3959, 20.422 )
+rotation = 0.695257
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 1 )
+
+[node name="armR" type="RigidBody2D" parent="."]
+
+[node name="poly" type="CollisionPolygon2D" parent="armR"]
+position = Vector2( -46.0419, 22.7362 )
+rotation = -0.811578
+scale = Vector2( 1, 1.04306 )
+polygon = PoolVector2Array( 15.2553, 21.5202, 22.6347, 21.62, 28.6398, 24.5604, 33.4958, 20.4824, 25.0045, 17.4071, 15.1781, 17.9732 )
+
+[node name="Sprite" type="Sprite" parent="armR/poly"]
+position = Vector2( 23.3959, 20.422 )
+rotation = 0.695257
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 1 )
+flip_h = true
+
+[node name="joint_chest_armR" type="PinJoint2D" parent="."]
+position = Vector2( -7.30767, 17.2727 )
+node_a = NodePath("../chest")
+node_b = NodePath("../armR")
+
+[node name="joint_chest_armL" type="PinJoint2D" parent="."]
+position = Vector2( 8.63633, 17.4388 )
+node_a = NodePath("../chest")
+node_b = NodePath("../armL")
+
+[node name="legL" type="RigidBody2D" parent="."]
+position = Vector2( -0.830418, 0.166084 )
+
+[node name="poly" type="CollisionPolygon2D" parent="legL"]
+position = Vector2( 6.59513, 46.21 )
+polygon = PoolVector2Array( -3.34435, -5.60239, -1.1462, 0.782722, -0.308809, 7.90055, 2.41271, 15.2277, 2.20337, 23.0783, 6.39033, 23.2876, 6.70435, 15.1231, 4.92489, 8.21458, 4.71554, 0.259354, 2.51739, -6.7538 )
+
+[node name="Sprite" type="Sprite" parent="legL/poly"]
+position = Vector2( 0.631119, 0.473337 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 7 )
+
+[node name="Sprite2" type="Sprite" parent="legL/poly"]
+position = Vector2( 3.48953, 15.743 )
+rotation = 0.109376
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 5 )
+
+[node name="legR" type="RigidBody2D" parent="."]
+
+[node name="poly" type="CollisionPolygon2D" parent="legR"]
+position = Vector2( -4.22695, 46.922 )
+polygon = PoolVector2Array( -2.7209, -7.3959, -4.91383, -0.451622, -4.47525, 7.15054, -5.9372, 14.3141, -6.0103, 22.2818, -1.18585, 22.2818, -1.25895, 14.6065, 0.349203, 7.58913, 1.44567, 0.279358, 3.6386, -6.66493 )
+
+[node name="Sprite" type="Sprite" parent="legR/poly"]
+position = Vector2( -0.650444, -0.238647 )
+rotation = -0.0465547
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="Sprite2" type="Sprite" parent="legR/poly"]
+position = Vector2( -2.63349, 14.6038 )
+rotation = -0.120773
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 5 )
+flip_h = true
+
+[node name="peL" type="RigidBody2D" parent="."]
+
+[node name="poly" type="CollisionPolygon2D" parent="peL"]
+position = Vector2( 12.495, 71.1718 )
+rotation = -0.0650321
+polygon = PoolVector2Array( 0.320539, -1.87962, -3.73904, -1.20417, -0.910933, 1.28684, 4.02356, 1.60819, 4.01051, 0.496643 )
+
+[node name="Sprite" type="Sprite" parent="peL/poly"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 8 )
+
+[node name="peR" type="RigidBody2D" parent="."]
+
+[node name="poly" type="CollisionPolygon2D" parent="peR"]
+position = Vector2( -9.06103, 70.9317 )
+rotation = -0.0163657
+scale = Vector2( 1, 1 )
+polygon = PoolVector2Array( -0.301865, -1.86335, -4.16987, 0.0716248, -4.35174, 1.37191, 0.681029, 1.69966, 3.9546, -0.808594 )
+
+[node name="Sprite" type="Sprite" parent="peR/poly"]
+rotation = 0.11155
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 8 )
+flip_h = true
+
+[node name="maoR" type="RigidBody2D" parent="."]
+
+[node name="poly" type="CollisionPolygon2D" parent="maoR"]
+position = Vector2( -21.8224, 27.9857 )
+rotation = -1.15341
+polygon = PoolVector2Array( 0.300892, -3.27602, 2.75699, 0.0648937, 1.94052, 2.81917, -1.31597, 2.6684, -2.83533, 0.241111, -2.04398, -1.97042 )
+
+[node name="Sprite" type="Sprite" parent="maoR/poly"]
+rotation = 3.12336
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="maoL" type="RigidBody2D" parent="."]
+
+[node name="poly" type="CollisionPolygon2D" parent="maoL"]
+position = Vector2( 23.2921, 28.0903 )
+rotation = -1.34377
+scale = Vector2( 1, 1 )
+polygon = PoolVector2Array( 0.300892, -3.27602, 2.75699, 0.0648937, 1.94052, 2.81917, -1.31597, 2.6684, -2.83533, 0.241111, -2.04398, -1.97042 )
+
+[node name="Sprite" type="Sprite" parent="maoL/poly"]
+rotation = 3.12336
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="joint_chest_legR" type="PinJoint2D" parent="."]
+position = Vector2( -4.84279, 39.3234 )
+node_a = NodePath("../chest")
+node_b = NodePath("../legR")
+
+[node name="joint_chest_legL" type="PinJoint2D" parent="."]
+position = Vector2( 6.58619, 39.7109 )
+node_a = NodePath("../chest")
+node_b = NodePath("../legL")
+
+[node name="joint_armR_maoR" type="PinJoint2D" parent="."]
+position = Vector2( -19.9523, 25.5699 )
+node_a = NodePath("../armR")
+node_b = NodePath("../maoR")
+
+[node name="joint_armL_maoL" type="PinJoint2D" parent="."]
+position = Vector2( 23.0517, 25.9573 )
+node_a = NodePath("../armL")
+node_b = NodePath("../maoL")
+
+[node name="joint_legR_peR" type="PinJoint2D" parent="."]
+position = Vector2( -7.55476, 69.155 )
+node_a = NodePath("../legR")
+node_b = NodePath("../peR")
+
+[node name="joint_legL_peL" type="PinJoint2D" parent="."]
+position = Vector2( 9.87929, 69.155 )
+node_a = NodePath("../legL")
+node_b = NodePath("../peL")
